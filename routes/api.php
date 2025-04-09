@@ -9,23 +9,19 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 
-//Estas son funciones anonimas
+//Rutas para el controlador de estudiantes
+Route::get('/students', [StudentController::class, 'index']);
 
-Route::post('/students',[StudentController::class,'store']);
+Route::post('/students', [StudentController::class, 'store']);
 
-//Para agregar un estudiante nuevo
-Route::post('/students',[StudentController::class,'store']);
+Route::get('/students/{id}', [StudentController::class, 'show']);
 
-//Para actualizar un estudiante ya existente, {id} es un parámetro dinámico: cuando llamamos a /api/students/3, Laravel
-//captura ese 3 y lo pasa como argumento.
+Route::put('/students/{id}', [StudentController::class, 'update']);
+
+Route::patch('/students/{id}', [StudentController::class, 'updatePartial']);
+
+Route::delete('/students/{id}', [StudentController::class, 'destroy']);
 
 
-Route::put('/students/{id}',[StudentController::class,'update']);
-//Para actualizar parcialmente un estudiante});
 
-//Para borrar un unico estudiante
-Route::delete('/students/{id}', function () { return 'Deleti student'; });
-
-//Para obtener un unico estudiante es Get, Devuelve los datos del estudiante
-Route::get('/students/{id}', function () {return 'Getting one student'; });
 
